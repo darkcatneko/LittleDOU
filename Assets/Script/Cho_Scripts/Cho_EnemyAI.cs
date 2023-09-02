@@ -48,7 +48,7 @@ public class Cho_EnemyAI : MonoBehaviour
         idleTrigger = false;
         fightTrigger = false;
 
-        mat = GameObject.Find("EnemyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
+        mat = GameObject.Find("EnemyBodyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         EnemyCurrentStatus = EnemyStatus.ENEMY_IDLE;
 
