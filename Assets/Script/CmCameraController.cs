@@ -21,6 +21,5 @@ public class CmCameraController : MonoBehaviour
     {
         thirdPersonFollow_ = virtualCamera_.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         composer_ = virtualCamera_.GetCinemachineComponent<CinemachineComposer>();
-
     }
 }
