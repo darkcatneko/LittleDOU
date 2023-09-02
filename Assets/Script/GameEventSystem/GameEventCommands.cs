@@ -3,11 +3,12 @@ using UnityEngine;
 
 namespace Gamemanager
 {
-   public class PlayerMovementCommand 
+    public class EnemyDestroyCommand:GameEventMessageBase
     {
-
+        
     }
 
-    
+
+
 
 }

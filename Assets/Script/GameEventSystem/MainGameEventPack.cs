@@ -7,5 +7,5 @@ using System;
 
 public class MainGameEventPack : GameEventPack
 {
-   
+    public IObservable<EnemyDestroyCommand> OnEnemyDestroy => getSubject<EnemyDestroyCommand>();
 }
