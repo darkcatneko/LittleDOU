@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 using BehaviorDesigner.Runtime;
 using System;
 using UniRx;
+using Unity.Mathematics;
 
 
 public class Cho_EnemyAI : MonoBehaviour
@@ -16,6 +17,9 @@ public class Cho_EnemyAI : MonoBehaviour
     private bool idleTrigger;
     [SerializeField]
     private bool fightTrigger;
+
+    private Material mat;
+
     [SerializeField,Tooltip("設置<該移動了>的時間")]
     private int timeToMoveValue = 25;
     [SerializeField, Tooltip("設置<該移動了>時間的閾值")]
@@ -44,11 +48,20 @@ public class Cho_EnemyAI : MonoBehaviour
         idleTrigger = false;
         fightTrigger = false;
 
+        mat = GetComponent<MeshRenderer>().materials[0];
+
         EnemyCurrentStatus = EnemyStatus.ENEMY_IDLE;
 
     }
 
     void Update()
+    {
+        changeEnemyBehaviorState();
+
+    }
+
+    //切換敵人行為模式
+    void changeEnemyBehaviorState()
     {
         switch (EnemyCurrentStatus)
         {
@@ -96,16 +109,15 @@ public class Cho_EnemyAI : MonoBehaviour
                 break;
         }
     }
-
-    public void OnGUI()
-    {
-        // Assign the next External Behavior Tree within the simplified pool.
-        if (GUILayout.Button("Assign"))
-        {
-            behaviorTree.DisableBehavior();
-            behaviorTree.ExternalBehavior = externalBehaviorTrees[index];
-            behaviorTree.EnableBehavior();
-            index = (index + 1) % externalBehaviorTrees.Length;
-        }
-    }
+    //public void OnGUI()
+    //{
+    //    // Assign the next External Behavior Tree within the simplified pool.
+    //    if (GUILayout.Button("Assign"))
+    //    {
+    //        behaviorTree.DisableBehavior();
+    //        behaviorTree.ExternalBehavior = externalBehaviorTrees[index];
+    //        behaviorTree.EnableBehavior();
+    //        index = (index + 1) % externalBehaviorTrees.Length;
+    //    }
+    //}
 }
