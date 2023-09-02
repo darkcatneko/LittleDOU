@@ -3,7 +3,10 @@ using UnityEngine;
 
 namespace Gamemanager
 {
-   
+   public class PlayerMovementCommand 
+    {
+
+    }
 
     
 
