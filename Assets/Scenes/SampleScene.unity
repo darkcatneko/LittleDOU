@@ -1053,6 +1053,7 @@ GameObject:
   - component: {fileID: 1506999158}
   - component: {fileID: 1506999157}
   - component: {fileID: 1506999159}
+  - component: {fileID: 1506999160}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1076,8 +1077,11 @@ MonoBehaviour:
   speed_: 10
   playerGameObject_: {fileID: 27135832}
   isShooting_: 1
-  shootPoint_: {fileID: 0}
-  bulletPrefab_: {fileID: 0}
+  shootPoint_: {fileID: 666420347}
+  bulletPrefab_: {fileID: 369547394359141962, guid: 37c7adec488bb664480cd3e79ac95b27,
+    type: 3}
+  bulletObjectClass_: {fileID: 1506999160}
+  bulletSpeed_: 10
 --- !u!33 &1506999155
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1163,6 +1167,18 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerInput
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1506999160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506999153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218e13be2f9abb945a6517bb10288516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1574044030
 GameObject:
   m_ObjectHideFlags: 0

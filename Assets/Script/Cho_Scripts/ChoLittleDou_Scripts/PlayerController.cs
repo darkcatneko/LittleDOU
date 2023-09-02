@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class PlayerController : MonoBehaviour
     GameObject bulletPrefab_;
     [SerializeField]
     ObjectPoolClass bulletObjectClass_;
+    [SerializeField]
+    float bulletSpeed_ = 10;
+    [SerializeField]
+    VisualEffect flash_;
 
     void Update()
     {
@@ -61,21 +66,23 @@ public class PlayerController : MonoBehaviour
     {
         fireOnce(100);
     }
-       
+
     void fireOnce(float force)
     {
-            // 获取角色的面朝方向
-            Vector3 facingDirection = playerGameObject_.transform.forward; // 假设角色是朝向x轴正方向的
+        shoot();
+        // 获取角色的面朝方向
+        Vector3 facingDirection = playerGameObject_.transform.forward; // 假设角色是朝向x轴正方向的
 
-            // 计算相反的方向
-            Vector3 oppositeDirection = -facingDirection;
+        // 计算相反的方向
+        Vector3 oppositeDirection = -facingDirection;
 
-            // 施加相反方向的力
-            playerRigidbody_.AddForce(oppositeDirection * force, ForceMode.Impulse);
-        
+        // 施加相反方向的力
+        playerRigidbody_.AddForce(oppositeDirection * force, ForceMode.Impulse);
+        flash_.Play();
+
     }
     void OnFireContinuous()
-    {        
+    {
         isShooting_ = false;
         fireContinuous();
     }
@@ -100,7 +107,7 @@ public class PlayerController : MonoBehaviour
         while (!isShooting_)
         {
             // 等待3帧
-            await UniTask.Delay(300);
+            await UniTask.Delay(50);
 
             // 在这里执行你的方法
             fireOnce(5);
@@ -108,7 +115,20 @@ public class PlayerController : MonoBehaviour
     }
 
     void shoot()
-    {
-        
+    {        
+        var bulletOBJ = bulletObjectClass_.GetGameObject(bulletPrefab_, shootPoint_.transform.position, Quaternion.identity);
+        bulletOBJ.GetComponent<PoolObjectDestroyer>().StartDestroyTimer(5f);
+        // 計算子彈需要旋轉的角度以匹配玩家的面向
+        Vector3 playerDirection = playerGameObject_.transform.position - shootPoint_.transform.position;
+        Quaternion bulletRotation = Quaternion.LookRotation(playerDirection.normalized);
+        Vector3 bulletDirection = -playerDirection.normalized;
+        // 設置子彈的旋轉
+        bulletOBJ.transform.rotation = bulletRotation;
+
+        // 獲取子彈的Rigidbody（如果有的話）
+        Rigidbody bulletRigidbody = bulletOBJ.GetComponent<Rigidbody>();
+
+        // 設置子彈的速度，使其沿著子彈的前方（朝向玩家的方向）移動
+        bulletRigidbody.velocity = bulletDirection * bulletSpeed_;
     }
 }
