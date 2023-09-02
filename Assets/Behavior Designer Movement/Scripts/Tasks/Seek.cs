@@ -16,7 +16,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         public override void OnStart()
         {
             base.OnStart();
-
+            target = GameObject.FindGameObjectWithTag("Player").gameObject;
             SetDestination(Target());
         }
 
@@ -37,6 +37,7 @@ namespace BehaviorDesigner.Runtime.Tasks.Movement
         private Vector3 Target()
         {
             if (target.Value != null) {
+                
                 return target.Value.transform.position;
             }
             return targetPosition.Value;

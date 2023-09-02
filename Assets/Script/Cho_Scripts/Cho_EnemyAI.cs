@@ -6,11 +6,20 @@ using BehaviorDesigner.Runtime;
 using System;
 using UniRx;
 using Unity.Mathematics;
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityTransform;
 
-
+public enum EnemyStatus
+{
+    ENEMY_IDLE,
+    ENEMY_MOVEMENT,
+    ENEMY_FIGHT
+}
 public class Cho_EnemyAI : MonoBehaviour
 {
     public EnemyStatus EnemyCurrentStatus;
+
+    public Color EnemyBodyColor;
+
     [SerializeField]
     private bool moveTrigger;
     [SerializeField]
@@ -20,6 +29,8 @@ public class Cho_EnemyAI : MonoBehaviour
 
     private Material enemyBodyMat;
     private Material enemyPantMat;
+
+   
 
     [SerializeField,Tooltip("設置<該移動了>的時間")]
     private int timeToMoveValue = 25;
@@ -36,12 +47,7 @@ public class Cho_EnemyAI : MonoBehaviour
     private ExternalBehavior[] externalBehaviorTrees;
     private int index;
 
-    public enum EnemyStatus
-    {
-        ENEMY_IDLE,
-        ENEMY_MOVEMENT,
-        ENEMY_FIGHT
-    }
+    
 
     void Start()
     {
@@ -51,8 +57,8 @@ public class Cho_EnemyAI : MonoBehaviour
         idleTrigger = false;
         fightTrigger = false;
 
-        enemyBodyMat = GameObject.Find("EnemyBodyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
-        enemyPantMat = GameObject.Find("EnemyPantMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
+        enemyBodyMat = transform.GetChild(4).GetComponent<SkinnedMeshRenderer>().materials[0];
+        enemyPantMat = transform.GetChild(5).GetComponent<SkinnedMeshRenderer>().materials[0];
 
         EnemyCurrentStatus = EnemyStatus.ENEMY_IDLE;
 
@@ -62,9 +68,14 @@ public class Cho_EnemyAI : MonoBehaviour
     {
         changeEnemyBehaviorState();
         //Debug.Log((SharedColor)behaviorTree.GetVariable("EnemyBodyColor"));
-        var enemyBodyColor = (SharedColor)GlobalVariables.Instance.GetVariable("EnemyBodyColor");
-        enemyBodyMat.color = enemyBodyColor.Value;
-        enemyPantMat.color = enemyBodyColor.Value;
+        //var enemyBodyColor = (SharedColor)GlobalVariables.Instance.GetVariable("EnemyBodyColor");
+        var enemyBodyColor = (SharedColor)behaviorTree.GetVariable("EnemyBodyColor");
+        if(enemyBodyColor != null )
+        {
+            enemyBodyMat.color = enemyBodyColor.Value;
+            enemyPantMat.color = enemyBodyColor.Value;
+        }
+        
     }
 
     //切換敵人行為模式
