@@ -16,7 +16,8 @@ public class CmCameraController : MonoBehaviour
     }
     private void Update()
     {
-        thirdPersonFollow_.ShoulderOffset.y = getCmDistance();
+        //thirdPersonFollow_.ShoulderOffset.y = getCmDistance();
+        thirdPersonFollow_.ShoulderOffset.y = Mathf.Lerp(thirdPersonFollow_.ShoulderOffset.y, getCmDistance(), 0.1f);
     }
     /// <summary>
     /// do at awake
