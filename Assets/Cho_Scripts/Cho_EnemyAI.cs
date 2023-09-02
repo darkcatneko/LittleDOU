@@ -17,13 +17,13 @@ public class Cho_EnemyAI : MonoBehaviour
     [SerializeField]
     private bool fightTrigger;
     [SerializeField,Tooltip("設置<該移動了>的時間")]
-    private int timeToMoveValue = 45;
+    private int timeToMoveValue = 25;
     [SerializeField, Tooltip("設置<該移動了>時間的閾值")]
-    private int timeToMoveThreshold = 15;
+    private int timeToMoveThreshold = 5;
     [SerializeField, Tooltip("設置<該發呆了>的時間")]
-    private int timeToDazeValue = 90;
+    private int timeToDazeValue = 35;
     [SerializeField, Tooltip("設置<該發呆了>時間的閾值")]
-    private int timeToDazeThreshold = 30;
+    private int timeToDazeThreshold = 5;
 
     [SerializeField]
     private BehaviorTree behaviorTree;
