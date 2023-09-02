@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedColor","Name":"EnemyBodyColor","IsShared":true,"IsGlobal":true,"Tooltip":"\u6575\u4eba\u8eab\u9ad4\u984f\u8272","ColormValue":"RGBA(1.000,
+    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedColor","Name":"EnemyBodyColor","IsShared":true,"IsGlobal":true,"ColormValue":"RGBA(1.000,
       1.000, 1.000, 1.000)"}]}'
     fieldSerializationData:
       typeName: []

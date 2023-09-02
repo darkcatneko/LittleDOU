@@ -18,7 +18,8 @@ public class Cho_EnemyAI : MonoBehaviour
     [SerializeField]
     private bool fightTrigger;
 
-    private Material mat;
+    private Material enemyBodyMat;
+    private Material enemyPantMat;
 
     [SerializeField,Tooltip("設置<該移動了>的時間")]
     private int timeToMoveValue = 25;
@@ -44,11 +45,14 @@ public class Cho_EnemyAI : MonoBehaviour
 
     void Start()
     {
+        behaviorTree = GetComponent<BehaviorTree>();
+
         moveTrigger = false;
         idleTrigger = false;
         fightTrigger = false;
 
-        mat = GameObject.Find("EnemyBodyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
+        enemyBodyMat = GameObject.Find("EnemyBodyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
+        enemyPantMat = GameObject.Find("EnemyPantMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         EnemyCurrentStatus = EnemyStatus.ENEMY_IDLE;
 
@@ -58,8 +62,9 @@ public class Cho_EnemyAI : MonoBehaviour
     {
         changeEnemyBehaviorState();
         //Debug.Log((SharedColor)behaviorTree.GetVariable("EnemyBodyColor"));
-        //var myIntVariable = (SharedColor)behaviorTree.GetVariable("EnemyBodyColor");
-        //mat.color = myIntVariable.Value;
+        var enemyBodyColor = (SharedColor)GlobalVariables.Instance.GetVariable("EnemyBodyColor");
+        enemyBodyMat.color = enemyBodyColor.Value;
+        enemyPantMat.color = enemyBodyColor.Value;
     }
 
     //切換敵人行為模式
