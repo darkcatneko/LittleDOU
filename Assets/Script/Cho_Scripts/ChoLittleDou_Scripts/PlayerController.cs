@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     GameObject shootPoint_;
     [SerializeField]
     GameObject bulletPrefab_;
+    [SerializeField]
+    ObjectPoolClass bulletObjectClass_;
 
     void Update()
     {
@@ -107,6 +109,6 @@ public class PlayerController : MonoBehaviour
 
     void shoot()
     {
-
+        
     }
 }
