@@ -14,6 +14,10 @@ public class CmCameraController : MonoBehaviour
     {
         SetVirtualCamera();
     }
+    private void Update()
+    {
+        thirdPersonFollow_.ShoulderOffset.y = getCmDistance();
+    }
     /// <summary>
     /// do at awake
     /// </summary>
@@ -22,4 +26,13 @@ public class CmCameraController : MonoBehaviour
         thirdPersonFollow_ = virtualCamera_.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
         composer_ = virtualCamera_.GetCinemachineComponent<CinemachineComposer>();
     }
+    
+    float getCmDistance()
+    {
+        var speedRef = GameManager.Instance.PlayerObject.GetComponent<Rigidbody>().velocity.magnitude;
+        speedRef = Mathf.Clamp(speedRef, 0, 100);
+
+        var y =  15f - (100f - speedRef) * 8f / 100f;
+        return y;
+    }    
 }
