@@ -48,7 +48,7 @@ public class Cho_EnemyAI : MonoBehaviour
         idleTrigger = false;
         fightTrigger = false;
 
-        mat = GetComponent<MeshRenderer>().materials[0];
+        mat = GameObject.Find("EnemyMesh").GetComponent<SkinnedMeshRenderer>().materials[0];
 
         EnemyCurrentStatus = EnemyStatus.ENEMY_IDLE;
 
@@ -57,7 +57,9 @@ public class Cho_EnemyAI : MonoBehaviour
     void Update()
     {
         changeEnemyBehaviorState();
-
+        //Debug.Log((SharedColor)behaviorTree.GetVariable("EnemyBodyColor"));
+        //var myIntVariable = (SharedColor)behaviorTree.GetVariable("EnemyBodyColor");
+        //mat.color = myIntVariable.Value;
     }
 
     //切換敵人行為模式
