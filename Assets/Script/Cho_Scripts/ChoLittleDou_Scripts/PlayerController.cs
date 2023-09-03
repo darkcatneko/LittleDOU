@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,6 +47,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject onHitParticle_;
 
+    [SerializeField]
+    public Image Health;
+    [SerializeField]
+    public Image Heat;
+
     void Update()
     {
         playerMovement();
@@ -53,6 +59,7 @@ public class PlayerController : MonoBehaviour
         mouseRotation();
         buttSwitch();
         heatCheck();
+        updateUI();
     }
     void heatCheck()
     {
@@ -211,5 +218,10 @@ public class PlayerController : MonoBehaviour
         audio_.PlayOneShot(oof_);
         HealthPoint -= 5;
         Instantiate(onHitParticle_, transform.position, Quaternion.identity);
+    }
+    void updateUI()
+    {
+        Health.fillAmount = HealthPoint / 100f;
+        Heat.fillAmount = HeatGage / 700f;
     }
 }

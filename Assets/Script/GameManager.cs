@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-
+using TMPro;
+using UnityEngine.UI;
 public class GameManager : ToSingletonMonoBehavior<GameManager>
 {
-    
+
     public GameObject PlayerObject;
     public MainGameEventPack GameEventPack = new MainGameEventPack();
     [SerializeField]
@@ -13,20 +11,25 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
     [SerializeField]
     AudioClip AudioClip;
     public int Score;
+    [SerializeField]
+    TextMeshProUGUI textMeshProUGUI_;
+    [SerializeField]
+    public Image Health;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void PlusScore()
     {
         Score++;
-        if (Score %10 ==0)
+        textMeshProUGUI_.text = Score.ToString();
+        if (Score % 10 == 0)
         {
             audioSource_.PlayOneShot(AudioClip);
         }
