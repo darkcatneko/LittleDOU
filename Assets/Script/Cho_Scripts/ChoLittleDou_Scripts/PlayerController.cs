@@ -43,6 +43,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     GameObject beeeeeen_;
 
+    [SerializeField]
+    GameObject onHitParticle_;
+
     void Update()
     {
         playerMovement();
@@ -207,5 +210,6 @@ public class PlayerController : MonoBehaviour
     {
         audio_.PlayOneShot(oof_);
         HealthPoint -= 5;
+        Instantiate(onHitParticle_, transform.position, Quaternion.identity);
     }
 }
