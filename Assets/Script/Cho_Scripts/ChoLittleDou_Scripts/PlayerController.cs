@@ -23,11 +23,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     VisualEffect flash_;
 
+    
+
     void Update()
     {
         playerMovement();
         backFireTest();
         mouseRotation();
+
+        
     }
     private void FixedUpdate()
     {
@@ -39,6 +43,7 @@ public class PlayerController : MonoBehaviour
             var horizontalMovement = Input.GetAxis("Horizontal");
             var verticalMovement = Input.GetAxis("Vertical");
             playerRigidbody_.velocity = new Vector3(horizontalMovement, 0, verticalMovement) * speed_;
+            
         }
     }
 
