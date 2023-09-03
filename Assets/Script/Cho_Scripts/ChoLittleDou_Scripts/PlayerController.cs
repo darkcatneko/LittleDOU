@@ -32,7 +32,16 @@ public class PlayerController : MonoBehaviour
     AudioClip oof_;
 
     [SerializeField]
+    float HeatGage;
+    [SerializeField]
+    bool isOverHeat_ = false;
+
+    [SerializeField]
     public float HealthPoint = 100;
+    [SerializeField]
+    GameObject bean_;
+    [SerializeField]
+    GameObject beeeeeen_;
 
     void Update()
     {
@@ -40,20 +49,45 @@ public class PlayerController : MonoBehaviour
         backFireTest();
         mouseRotation();
         buttSwitch();
+        heatCheck();
+    }
+    void heatCheck()
+    {
+        if (HeatGage == 700) { OnOverHeat(); }
+        if (HeatGage == 0)
+        {
+            isOverHeat_ = false;
+            bean_.SetActive(true);
+            beeeeeen_.SetActive(false);
+        }
     }
     private void FixedUpdate()
     {
     }
     void playerMovement()
     {
-        if (isShooting_)
+        if (isShooting_&&!isOverHeat_)
         {
+            HeatGage = Mathf.Clamp(HeatGage - 25f * Time.deltaTime, 0, 700);
             var horizontalMovement = Input.GetAxis("Horizontal");
             var verticalMovement = Input.GetAxis("Vertical");
             playerRigidbody_.velocity = new Vector3(horizontalMovement, 0, verticalMovement) * speed_;
         }
+        if (isOverHeat_)
+        {
+            HeatGage = Mathf.Clamp(HeatGage - 100f * Time.deltaTime, 0, 700);
+            var horizontalMovement = Input.GetAxis("Horizontal");
+            var verticalMovement = Input.GetAxis("Vertical");
+            playerRigidbody_.velocity = new Vector3(horizontalMovement, 0, verticalMovement) * speed_*5;
+        }
     }
-
+    void OnOverHeat()
+    {
+        isOverHeat_ = true; 
+        OnStopFire();
+        bean_.SetActive(false);
+        beeeeeen_.SetActive(true);
+    }
     void backFireTest()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -76,7 +110,10 @@ public class PlayerController : MonoBehaviour
     }
     void OnFireOnce()
     {
-        fireOnce(100);
+        if (!isOverHeat_)
+        {
+            fireOnce(100);
+        }
     }
 
     void fireOnce(float force)
@@ -92,17 +129,20 @@ public class PlayerController : MonoBehaviour
         playerRigidbody_.AddForce(oppositeDirection * force, ForceMode.Impulse);
         var playerDir = playerRigidbody_.velocity.normalized;
         var playerClampVelocity = playerDir * 200;
-        if (playerRigidbody_.velocity.magnitude>=200)
+        if (playerRigidbody_.velocity.magnitude >= 200)
         {
             playerRigidbody_.velocity = playerClampVelocity;
         }
         flash_.Play();
-
+        HeatGage = Mathf.Clamp(HeatGage + 10f, 0, 700);
     }
     void OnFireContinuous()
     {
-        isShooting_ = false;
-        fireContinuous();
+        if (!isOverHeat_)
+        {
+            isShooting_ = false;
+            fireContinuous();
+        }      
     }
     void backFireContinuous()
     {
@@ -147,11 +187,11 @@ public class PlayerController : MonoBehaviour
         Rigidbody bulletRigidbody = bulletOBJ.GetComponent<Rigidbody>();
 
         // 設置子彈的速度，使其沿著子彈的前方（朝向玩家的方向）移動
-        bulletRigidbody.velocity = bulletDirection * bulletSpeed_;       
+        bulletRigidbody.velocity = bulletDirection * bulletSpeed_;
     }
     void buttSwitch()
     {
-        if (playerRigidbody_.velocity.magnitude > 20)
+        if (playerRigidbody_.velocity.magnitude > 20&&!isOverHeat_)
         {
             buttCollider_.SetActive(true);
             hitBoxOBJ_.SetActive(false);
@@ -162,7 +202,7 @@ public class PlayerController : MonoBehaviour
             hitBoxOBJ_.SetActive(true);
         }
     }
-    
+
     public void GetHurt()
     {
         audio_.PlayOneShot(oof_);

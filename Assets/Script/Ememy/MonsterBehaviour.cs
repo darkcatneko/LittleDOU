@@ -7,6 +7,8 @@ public class MonsterBehaviour : MonoBehaviour
 {
     [SerializeField]
     float healthPoint = 100f;
+    [SerializeField]
+    GameObject spark_;
     void Update()
     {
         if ((this.gameObject.transform.position - GameManager.Instance.PlayerObject.transform.position).magnitude>110)
@@ -17,6 +19,8 @@ public class MonsterBehaviour : MonoBehaviour
         }
         if(healthPoint<=0)
         {
+            GameManager.Instance.PlusScore();
+            Instantiate(spark_,this.gameObject.transform.position,Quaternion.identity);
             var destroyer = this.gameObject.GetComponent<PoolObjectDestroyer>();
             destroyer.ReleaseThisObject();
             GameManager.Instance.GameEventPack.Send(new EnemyDestroyCommand());
