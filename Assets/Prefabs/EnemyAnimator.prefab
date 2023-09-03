@@ -954,8 +954,8 @@ MonoBehaviour:
         byteData: 
         byteDataArray: 
       Version: 1.7.7
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!195 &3371684142891303531
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1030,8 +1030,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 100
   spark_: {fileID: 2650827908630529731, guid: 834cb3437163b53418a7002dfa5ed0e8, type: 3}
-  audio_: {fileID: -5255456036134233094}
-  clip_: {fileID: 8300000, guid: 8fd8863c38458784c8d3a0efe633c45d, type: 3}
 --- !u!82 &-5255456036134233094
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2292,7 +2290,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d72cdc79898aec142962aa17d7572df9, type: 2}
+  - {fileID: 2100000, guid: cd16972fda62a3645989a42f76f050a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2561,7 +2559,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d72cdc79898aec142962aa17d7572df9, type: 2}
+  - {fileID: 2100000, guid: cd16972fda62a3645989a42f76f050a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
