@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/StartScene.unity.meta
 guid: ba5e778677432f54c9fef4a2b027949c
+========
+guid: faa2cba0284159b4f8145d8423b2dfdd
+folderAsset: yes
+>>>>>>>> e9eab48 (Ready build):Assets/Prefabs/2d.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
