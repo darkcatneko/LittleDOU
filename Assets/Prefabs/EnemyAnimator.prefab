@@ -825,6 +825,7 @@ GameObject:
   - component: {fileID: 3371684142891303531}
   - component: {fileID: 4984406033599225491}
   - component: {fileID: 3175225291216733763}
+  - component: {fileID: 2280947970878070161}
   m_Layer: 7
   m_Name: EnemyAnimator
   m_TagString: Untagged
@@ -1014,6 +1015,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa6b28cbd6a628c4483e00218bb04811, type: 2}
   - {fileID: 11400000, guid: e67cc53c3653e2b4bab767d09c6b0377, type: 2}
   - {fileID: 11400000, guid: c27d5e4310a79ae4dbeff2249628f642, type: 2}
+--- !u!114 &2280947970878070161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702564885076302034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdd6dd741ffbf1b4387a7d7a8611315b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2715360660278161903
 GameObject:
   m_ObjectHideFlags: 0

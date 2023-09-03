@@ -22,16 +22,24 @@ public class PlayerController : MonoBehaviour
     float bulletSpeed_ = 10;
     [SerializeField]
     VisualEffect flash_;
+    [SerializeField]
+    GameObject buttCollider_;
+    [SerializeField]
+    GameObject hitBoxOBJ_;
+    [SerializeField]
+    AudioSource audio_;
+    [SerializeField]
+    AudioClip oof_;
 
-    
+    [SerializeField]
+    public float HealthPoint = 100;
 
     void Update()
     {
         playerMovement();
         backFireTest();
         mouseRotation();
-
-        
+        buttSwitch();
     }
     private void FixedUpdate()
     {
@@ -43,7 +51,6 @@ public class PlayerController : MonoBehaviour
             var horizontalMovement = Input.GetAxis("Horizontal");
             var verticalMovement = Input.GetAxis("Vertical");
             playerRigidbody_.velocity = new Vector3(horizontalMovement, 0, verticalMovement) * speed_;
-            
         }
     }
 
@@ -83,6 +90,12 @@ public class PlayerController : MonoBehaviour
 
         // 施加相反方向的力
         playerRigidbody_.AddForce(oppositeDirection * force, ForceMode.Impulse);
+        var playerDir = playerRigidbody_.velocity.normalized;
+        var playerClampVelocity = playerDir * 200;
+        if (playerRigidbody_.velocity.magnitude>=200)
+        {
+            playerRigidbody_.velocity = playerClampVelocity;
+        }
         flash_.Play();
 
     }
@@ -120,7 +133,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void shoot()
-    {        
+    {
         var bulletOBJ = bulletObjectClass_.GetGameObject(bulletPrefab_, shootPoint_.transform.position, Quaternion.identity);
         bulletOBJ.GetComponent<PoolObjectDestroyer>().StartDestroyTimer(5f);
         // 計算子彈需要旋轉的角度以匹配玩家的面向
@@ -134,6 +147,25 @@ public class PlayerController : MonoBehaviour
         Rigidbody bulletRigidbody = bulletOBJ.GetComponent<Rigidbody>();
 
         // 設置子彈的速度，使其沿著子彈的前方（朝向玩家的方向）移動
-        bulletRigidbody.velocity = bulletDirection * bulletSpeed_;
+        bulletRigidbody.velocity = bulletDirection * bulletSpeed_;       
+    }
+    void buttSwitch()
+    {
+        if (playerRigidbody_.velocity.magnitude > 20)
+        {
+            buttCollider_.SetActive(true);
+            hitBoxOBJ_.SetActive(false);
+        }
+        else
+        {
+            buttCollider_.SetActive(false);
+            hitBoxOBJ_.SetActive(true);
+        }
+    }
+    
+    public void GetHurt()
+    {
+        audio_.PlayOneShot(oof_);
+        HealthPoint -= 5;
     }
 }

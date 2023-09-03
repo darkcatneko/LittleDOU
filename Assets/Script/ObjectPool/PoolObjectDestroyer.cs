@@ -8,7 +8,8 @@ public class PoolObjectDestroyer : MonoBehaviour
 
     public void ReleaseThisObject()
     {
-        Pool.ReleaseGameObject(gameObject);
+        if (Pool != null) Pool.ReleaseGameObject(gameObject);
+        else { Destroy(gameObject); }
     }
     public void StartDestroyTimer(float time)
     {
