@@ -2,7 +2,34 @@ fileFormatVersion: 2
 guid: 15a3b410fc931404fb5ac139336bb7b2
 ModelImporter:
   serializedVersion: 21300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4214355861693063858
+    second: plant_A_leaf_006|arch_002|Take 001|BaseLayer
+  - first:
+      74: 6767930907708751403
+    second: plant_A_leaf_006|arch_002|Take 001|BaseLayer.001
+  - first:
+      74: -6753484871755833511
+    second: plant_A_leaf_006|arch_01|Take 001|BaseLayer
+  - first:
+      74: 6264548496567299837
+    second: plant_A_leaf_006|arch_01|Take 001|BaseLayer.001
+  - first:
+      74: 8157920605665664590
+    second: plant_A_leaf_006|ParticleSettingsAction
+  - first:
+      74: 1800600394571801337
+    second: plant_A_leaf_006|ParticleSettingsAction.001
+  - first:
+      74: 6377297983397834820
+    second: plant_A_leaf_006|plant_A_leaf_006|Take 001|BaseLayer
+  - first:
+      74: 4361991865667809807
+    second: plant_A_leaf_006|plant_A_leaf_006|Take 001|BaseLayer.001
+  - first:
+      74: -5699412242005907540
+    second: plant_A_leaf_006|plant_A_leaf_006|Take 001|BaseLayer.002
   externalObjects: {}
   materials:
     materialImportMode: 2

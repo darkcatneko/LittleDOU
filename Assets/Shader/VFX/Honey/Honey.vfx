@@ -2531,7 +2531,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 16.53
+      m_SerializableObject: 108.8
     m_Space: 2147483647
   m_Property:
     name: Intensity
@@ -2565,7 +2565,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 8.38
     m_Space: 2147483647
   m_Property:
     name: Drag
@@ -2599,7 +2599,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 6.58
     m_Space: 2147483647
   m_Property:
     name: frequency
@@ -2763,7 +2763,7 @@ MonoBehaviour:
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
-  - {fileID: 8926484042661614974}
+  - {fileID: 8926484042661614987}
   m_OutputSlots: []
   m_Disabled: 0
   compositionPosition: 1
@@ -2774,7 +2774,7 @@ MonoBehaviour:
   placementMode: 0
   surfaceCoordinates: 1
   sourceMesh: 0
---- !u!114 &8926484042661614974
+--- !u!114 &8926484042661614987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2792,7 +2792,7 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 8926484042661614974}
+  m_MasterSlot: {fileID: 8926484042661614987}
   m_MasterData:
     m_Owner: {fileID: 8926484042661614973}
     m_Value:
